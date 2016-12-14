@@ -24,7 +24,28 @@ class NewVisitorTest(unittest.TestCase):
 
 		# when we are on the home page, the page title says "The Mandelbrot Set"
 		self.assertIn("The Mandelbrot Set",self.browser.title)
+
+		h=self.browser.find_element_by_tag_name('h1')
+		m=self.browser.find_element_by_tag_name('img')
+		self.assertIn('M.JPG',m.get_attribute('src'))
+
+		a=self.browser.find_element_by_id('mendel')
+		a.click()
+
+		a=self.browser.current_url
+		self.assertIn("code", a)
+
+		h=self.browser.find_element_by_tag_name('h1')
+
+		m=self.browser.find_element_by_tag_name('img')
+		self.assertIn('mbrot.png',m.get_attribute('src'))
+
 		
+		a=self.browser.find_element_by_id('codemendel')
+		a.click()
+
+		a=self.browser.current_url
+		self.assertIn("index", a)
 
 if __name__=="__main__":
 		unittest.main(warnings="ignore")
